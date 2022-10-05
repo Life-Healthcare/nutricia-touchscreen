@@ -48,8 +48,8 @@ export const AppReset = createGlobalStyle`
     font-weight: normal;
     line-height: 1em;
     text-rendering: geometricPrecision;
-    background-color: #1e1e1e;
-    color: #fefefe;
+    background-color: #dccee5;
+    color: #8656a6;
   }
 
   main {
