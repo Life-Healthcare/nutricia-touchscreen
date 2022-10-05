@@ -1,7 +1,11 @@
 import React from "react";
 import { VideoPlayer } from "@/components/video/styles";
 
-export default function Video() {
+type Props = {
+  onTouch: () => void;
+};
+
+export default function Video({ onTouch }: Props) {
   return (
     <VideoPlayer
       src="./assets/home.mp4"
@@ -10,6 +14,7 @@ export default function Video() {
       autoPlay={true}
       playsInline={true}
       controls={false}
+      onMouseDown={onTouch}
     />
   );
 }
