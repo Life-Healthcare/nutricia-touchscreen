@@ -33,6 +33,8 @@ export const AppReset = createGlobalStyle`
     --root-size: calc(var(--root-scale) * 1vh);
     --root-min: 16px;
     --root-max: 20px;
+    --color-primary: #51338C,
+
   }
 
   @media (orientation: portrait) {
@@ -74,7 +76,7 @@ export const AppReset = createGlobalStyle`
     line-height: 1em;
     text-rendering: geometricPrecision;
     background-color: #51338C;
-    color: #8656a6;
+    color: #51338C;
   }
 
   main {
