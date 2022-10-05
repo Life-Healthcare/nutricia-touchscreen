@@ -3,6 +3,31 @@ import { fluidRange } from "polished";
 import vars from "@/components/app/vars";
 
 export const AppReset = createGlobalStyle`
+  @font-face {
+    font-family: "Bariol";
+    src: url("./assets/fonts/Bariol_Bold.otf") format("otf");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Bariol";
+    src: url("./assets/fonts/Bariol_Light.otf") format("otf");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Bariol";
+    src: url("./assets/fonts/Bariol_Regular.otf") format("otf");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  
   :root {
     --root-scale: 3;
     --root-size: calc(var(--root-scale) * 1vh);
@@ -44,11 +69,11 @@ export const AppReset = createGlobalStyle`
       `${vars.responsiveMax}px`
     )};
     font-size: clamp(var(--root-min), var(--root-size), var(--root-max));
-    font-family: system-ui, sans-serif;
+    font-family: "Bariol", sans-serif;
     font-weight: normal;
     line-height: 1em;
     text-rendering: geometricPrecision;
-    background-color: #dccee5;
+    background-color: #51338C;
     color: #8656a6;
   }
 
