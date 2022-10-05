@@ -9,8 +9,8 @@ export default function Home() {
   }
   return (
     <Main>
-      {/*<Video onTouch={handleUserTouch} />*/}
-      <Form />
+      <Video onTouch={handleUserTouch} />
+      {/*<Form />*/}
     </Main>
   );
 }
