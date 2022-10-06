@@ -1,4 +1,4 @@
-import React, { FormEventHandler } from "react";
+import React from "react";
 import {
   Button,
   Content,
@@ -11,21 +11,18 @@ import {
 } from "@/components/form/styles";
 import { Checkbox, Error, TextInput } from "@/components/form/components/input";
 import Modal from "@/components/modal/modal";
-
-type User = {
-  nutrison: {
-    [key: string]: boolean;
-  };
-  firstName: string;
-  lastName: string;
-  emailAddress: string;
-  placeOfWork: string;
-  agreement: boolean;
-};
+import schema from "@/components/form/model/form";
+import { User } from "@/types";
+import useSession from "@/hooks/use-session";
+import config from "@/config";
 
 const DEFAULT_USER = {
   nutrison: {
-    "protein-shot-leave-piece": false,
+    "nutrison-protein-shot-leave-piece": false,
+    "nutrison-protein-shot-user-guide": false,
+    "nutrison-range-leave-piece": false,
+    "nutrison-compendium": false,
+    "article-high-protein-tube-feeding-in-the-community": false,
   },
   firstName: "",
   lastName: "",
@@ -34,17 +31,75 @@ const DEFAULT_USER = {
   agreement: false,
 };
 
-export default function Form() {
+type Props = {
+  onExit: () => void;
+};
+
+export default function Form({ onExit }: Props) {
+  const session = useSession(config.analyticsEndpoint);
+  const [errors, setErrors] = React.useState<{ [key: string]: boolean } | null>(
+    {} || null
+  );
   const [user, setUser] = React.useState<User>(DEFAULT_USER);
   const [showModal, setShowModal] = React.useState(false);
 
-  function onChange(e: React.ChangeEvent<HTMLInputElement>) {}
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setErrors(null);
+    setUser((user) => {
+      if (e.target.type === "text") {
+        return { ...user, [e.target.name]: e.target.value };
+      } else if (e.target.name === "agreement") {
+        return { ...user, agreement: !user.agreement };
+      } else {
+        return {
+          ...user,
+          nutrison: {
+            ...user.nutrison,
+            [e.target.name]: !user.nutrison[e.target.name],
+          },
+        };
+      }
+    });
+  }
 
   function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
-    console.log("here");
-    setShowModal(true);
+    let { value, error } = schema.validate(user, { abortEarly: false });
+    const nutrison = Object.values(user.nutrison).filter((item) => item).length;
+    let errors = {};
+    if (error) {
+      error.details.forEach((detail) => {
+        errors = { ...errors, [detail.path[0]]: true };
+      });
+    }
+    if (nutrison === 0) {
+      errors = {
+        ...errors,
+        nutrison: true,
+      };
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setErrors(errors);
+    } else {
+      session.end(user);
+      handleReset();
+      setShowModal(true);
+    }
   }
+
+  function handleReset() {
+    setUser(DEFAULT_USER);
+  }
+
+  function handleExit() {
+    handleReset();
+    onExit();
+  }
+
+  React.useEffect(() => {
+    session.start();
+  }, [session]);
 
   return (
     <>
@@ -65,35 +120,41 @@ export default function Form() {
               </h2>
               <Checkbox
                 label="Nutrison Protein Shot Leave Piece"
-                checked={user.nutrison["protein-shot-leave-piece"]}
-                name={"protein-shot-leave-piece"}
+                checked={user.nutrison["nutrison-protein-shot-leave-piece"]}
+                name={"nutrison-protein-shot-leave-piece"}
                 onChange={onChange}
               />
               <Checkbox
-                label="Nutrison Protein Shot Leave Piece"
-                checked={user.nutrison["protein-shot-leave-piece"]}
-                name={"protein-shot-leave-piece"}
+                label="Nutrison Protein Shot User Guide"
+                checked={user.nutrison["nutrison-protein-shot-user-guide"]}
+                name={"nutrison-protein-shot-user-guide"}
                 onChange={onChange}
               />
               <Checkbox
-                label="Nutrison Protein Shot Leave Piece"
-                checked={user.nutrison["protein-shot-leave-piece"]}
-                name={"protein-shot-leave-piece"}
+                label="Nutrison Range Leave Piece"
+                checked={user.nutrison["nutrison-range-leave-piece"]}
+                name={"nutrison-range-leave-piece"}
                 onChange={onChange}
               />
               <Checkbox
-                label="Nutrison Protein Shot Leave Piece"
-                checked={user.nutrison["protein-shot-leave-piece"]}
-                name={"protein-shot-leave-piece"}
+                label="Nutrison Compendium"
+                checked={user.nutrison["nutrison-compendium"]}
+                name={"nutrison-compendium"}
                 onChange={onChange}
               />
               <Checkbox
-                label="Nutrison Protein Shot Leave Piece"
-                checked={user.nutrison["protein-shot-leave-piece"]}
-                name={"protein-shot-leave-piece"}
+                label="Article: High Protein Tube Feeding in the Community"
+                checked={
+                  user.nutrison[
+                    "article-high-protein-tube-feeding-in-the-community"
+                  ]
+                }
+                name={"article-high-protein-tube-feeding-in-the-community"}
                 onChange={onChange}
               />
-              <Error>*Please select at least one option</Error>
+              <Error show={errors?.["nutrison"]}>
+                *Please select at least one option
+              </Error>
             </Group>
             <Group className="lazy-load lazy-load-2">
               <TextInput
@@ -102,6 +163,7 @@ export default function Form() {
                 label="Please enter your first name*"
                 value={user.firstName}
                 onChange={onChange}
+                showError={errors?.["firstName"]}
               />
               <TextInput
                 name="lastName"
@@ -109,6 +171,7 @@ export default function Form() {
                 label="Please enter your last name*"
                 value={user.lastName}
                 onChange={onChange}
+                showError={errors?.["lastName"]}
               />
             </Group>
           </Section>
@@ -120,13 +183,15 @@ export default function Form() {
                 label="Please enter your email address*"
                 value={user.emailAddress}
                 onChange={onChange}
+                showError={errors?.["emailAddress"]}
               />
               <TextInput
-                name="firstName"
+                name="placeOfWork"
                 placeholder="Place of work"
                 label="Please enter your place of work*"
                 value={user.placeOfWork}
                 onChange={onChange}
+                showError={errors?.["placeOfWork"]}
               />
             </Group>
             <Group className="lazy-load lazy-load-2">
@@ -139,8 +204,8 @@ export default function Form() {
               at any time. Please see Nutricia’s Privacy Notice for Healthcare 
               Professionals available at www.nutricia.co.uk/hcp/privacy-policy 
               for more information.`}
-                checked={user.nutrison["protein-shot-leave-piece"]}
-                name={"protein-shot-leave-piece"}
+                checked={user.agreement}
+                name={"agreement"}
                 onChange={onChange}
                 labelSize="sm"
               />
@@ -149,8 +214,8 @@ export default function Form() {
               <Button onClick={handleSubmit}>
                 <span>Submit</span>
               </Button>
-              <Exit type="button">Reset Form</Exit>
-              <Exit type="button">Exit</Exit>
+              <Exit onClick={handleReset}>Reset Form</Exit>
+              <Exit onClick={handleExit}>Exit</Exit>
             </Group>
           </Section>
         </Content>

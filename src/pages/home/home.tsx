@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <Main>
       {step === Step.video && <Video onTouch={handleUserTouch} />}
-      {step === Step.form && <Form />}
+      {step === Step.form && <Form onExit={() => setStep(Step.video)} />}
     </Main>
   );
 }

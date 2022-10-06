@@ -15,6 +15,7 @@ type Props = {
 type TextProps = Props & {
   value: string;
   placeholder: string;
+  showError: boolean;
 };
 
 export function TextInput({
@@ -23,6 +24,7 @@ export function TextInput({
   name,
   onChange,
   placeholder,
+  showError,
 }: TextProps) {
   const id = useId();
   return (
@@ -37,7 +39,7 @@ export function TextInput({
         onChange={onChange}
         placeholder={placeholder}
       />
-      <Error>*This field must be completed</Error>
+      <Error show={showError}>*This field must be completed</Error>
     </TextGroup>
   );
 }
@@ -59,7 +61,7 @@ export function Checkbox({
   return (
     <CheckBoxGroup labelSize={labelSize}>
       <label htmlFor={id}>
-        <Tick>
+        <Tick checked={checked}>
           <input
             type="checkbox"
             name={name}
@@ -77,7 +79,8 @@ export function Checkbox({
 
 type ErrorProps = {
   children: string;
+  show: boolean;
 };
-export function Error({ children }: ErrorProps) {
-  return <ErrorString>{children}</ErrorString>;
+export function Error({ children, show }: ErrorProps) {
+  return <ErrorString show={show}>{children}</ErrorString>;
 }

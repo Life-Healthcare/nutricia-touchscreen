@@ -1,5 +1,6 @@
 const config = {
-  apiUrl: process.env.API_URL ?? "http://localhost:3000",
+  analyticsEndpoint:
+    "https://analytics-server.finervision.com/api/save-sessions",
 };
 
 export default config;

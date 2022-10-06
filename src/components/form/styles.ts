@@ -11,9 +11,14 @@ export const FormWrapper = styled.main`
   margin: auto;
   overflow: hidden;
 
+  h1,
+  h2,
+  p {
+    line-height: 1.1;
+  }
+
   h1 {
     font-size: 3.5em;
-    line-height: 1.1;
     color: var(--color-primary);
 
     span {
@@ -24,7 +29,7 @@ export const FormWrapper = styled.main`
   h2 {
     font-size: 1.5em;
     font-weight: bold;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
   }
 
   .lazy-load {
@@ -41,7 +46,7 @@ export const FormWrapper = styled.main`
         transform: translateY(0%);
       }
     }
-    
+
     opacity: 0;
     transform: translateY(var(--translate-y));
     animation: lazy-load var(--duration) ease forwards;
@@ -88,6 +93,10 @@ export const Footer = styled.footer`
 
   ${Group} {
     margin-bottom: 0;
+  }
+
+  p {
+    max-width: 820px;
   }
 `;
 
