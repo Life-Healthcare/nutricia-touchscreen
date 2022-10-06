@@ -14,28 +14,48 @@ type Props = {
 
 type TextProps = Props & {
   value: string;
+  placeholder: string;
 };
 
-export function Text({ label, value, name, onChange }: TextProps) {
+export function TextInput({
+  label,
+  value,
+  name,
+  onChange,
+  placeholder,
+}: TextProps) {
   const id = useId();
   return (
     <TextGroup>
       <label>{label}</label>
-      <input id={id} name={name} value={value} onChange={onChange} />
+      <input
+        id={id}
+        name={name}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+      />
+      <Error>*This field must be completed</Error>
     </TextGroup>
   );
 }
 
 type CheckBoxProps = Props & {
   checked: boolean;
-  labelSize?: string;
+  labelSize?: "sm" | "lg";
 };
 
-export function Checkbox({ label, name, checked, onChange }: CheckBoxProps) {
+export function Checkbox({
+  label,
+  labelSize = "lg",
+  name,
+  checked,
+  onChange,
+}: CheckBoxProps) {
   const id = useId();
 
   return (
-    <CheckBoxGroup>
+    <CheckBoxGroup labelSize={labelSize}>
       <label htmlFor={id}>
         <Tick>
           <input

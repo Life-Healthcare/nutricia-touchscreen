@@ -1,11 +1,24 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const TextGroup = styled.div``;
+export const TextGroup = styled.div`
+  display: grid;
+  max-width: 500px;
+
+  input {
+    padding: 1em;
+    border: none;
+    color: #51338c;
+
+    &::placeholder {
+      color: #51338c;
+    }
+  }
+`;
 
 export const Tick = styled.div`
   background: #51338c;
-  height: 2em;
-  width: 2em;
+  height: 2rem;
+  width: 2rem;
   position: relative;
 
   input {
@@ -21,17 +34,25 @@ export const Tick = styled.div`
   }
 `;
 
-export const CheckBoxGroup = styled.div`
+export const CheckBoxGroup = styled.div<{ labelSize: "sm" | "lg" }>`
   margin-bottom: 0.5em;
   span {
     font-size: 1.3em;
   }
 
   label {
-    display: flex;
+    display: grid;
+    grid-template-columns: 2em 1fr;
     gap: 1em;
-    align-items: center;
-  }
+    align-items: ${({ labelSize }) =>
+      labelSize === "sm" ? "flex-start" : "center"} ;
+    ${({ labelSize }) => {
+      if (labelSize === "sm") {
+        return css`
+          font-size: 0.8em;
+        `;
+      }
+    }}
 `;
 
 export const ErrorString = styled.p`
