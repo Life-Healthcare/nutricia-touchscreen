@@ -17,6 +17,17 @@ export const Box = styled.div`
   max-width: 1200px;
   height: 100%;
   max-height: 541px;
+  animation: scale 0.5s ease;
+
+  @keyframes scale {
+    0% {
+      transform: scale(0.7);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
 
   display: flex;
   flex-direction: column;

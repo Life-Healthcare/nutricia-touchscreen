@@ -3,14 +3,20 @@ import { Main } from "@/pages/home/styles";
 import Video from "@/components/video/video";
 import Form from "@/components/form/form";
 
+export enum Step {
+  video,
+  form,
+}
+
 export default function Home() {
+  const [step, setStep] = React.useState(Step.video);
   function handleUserTouch() {
-    console.log("touched");
+    setStep(Step.form);
   }
   return (
     <Main>
-      {/*<Video onTouch={handleUserTouch} />*/}
-      <Form />
+      {step === Step.video && <Video onTouch={handleUserTouch} />}
+      {step === Step.form && <Form />}
     </Main>
   );
 }

@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler } from "react";
+import React, { FormEventHandler } from "react";
 import {
   Button,
   Content,
@@ -36,8 +36,15 @@ const DEFAULT_USER = {
 
 export default function Form() {
   const [user, setUser] = React.useState<User>(DEFAULT_USER);
+  const [showModal, setShowModal] = React.useState(false);
 
   function onChange(e: React.ChangeEvent<HTMLInputElement>) {}
+
+  function handleSubmit(e: React.SyntheticEvent) {
+    e.preventDefault();
+    console.log("here");
+    setShowModal(true);
+  }
 
   return (
     <>
@@ -139,11 +146,11 @@ export default function Form() {
               />
             </Group>
             <Group>
-              <Button>
+              <Button onClick={handleSubmit}>
                 <span>Submit</span>
               </Button>
-              <Exit>Reset Form</Exit>
-              <Exit>Exit</Exit>
+              <Exit type="button">Reset Form</Exit>
+              <Exit type="button">Exit</Exit>
             </Group>
           </Section>
         </Content>
@@ -170,7 +177,7 @@ export default function Form() {
           </Section>
         </Footer>
       </FormWrapper>
-      <Modal />
+      {showModal && <Modal />}
     </>
   );
 }

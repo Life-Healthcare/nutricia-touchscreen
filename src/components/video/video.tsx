@@ -8,7 +8,7 @@ type Props = {
 export default function Video({ onTouch }: Props) {
   return (
     <VideoPlayer
-      src="./assets/home.mp4"
+      src="./assets/videos/home.mp4"
       muted={true}
       loop={true}
       autoPlay={true}
