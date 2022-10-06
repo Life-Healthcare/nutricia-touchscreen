@@ -49,7 +49,7 @@ export default function Form() {
   return (
     <>
       <FormWrapper>
-        <Header>
+        <Header className="lazy-load lazy-load-0">
           <h1>
             <span>ORDER YOUR NUTRISON SUPPORT MATERIALS</span> AND MAKE SURE
             EVERYTHING IS AT YOUR FINGERTIPS
@@ -58,7 +58,7 @@ export default function Form() {
         </Header>
         <Content>
           <Section>
-            <Group>
+            <Group className="lazy-load lazy-load-1">
               <h2>
                 Please choose the Nutrison support materials you are interested
                 in:*
@@ -95,7 +95,7 @@ export default function Form() {
               />
               <Error>*Please select at least one option</Error>
             </Group>
-            <Group>
+            <Group className="lazy-load lazy-load-2">
               <TextInput
                 name="firstName"
                 placeholder="Your first name"
@@ -113,7 +113,7 @@ export default function Form() {
             </Group>
           </Section>
           <Section>
-            <Group>
+            <Group className="lazy-load lazy-load-1">
               <TextInput
                 name="emailAddress"
                 placeholder="Email address"
@@ -129,7 +129,7 @@ export default function Form() {
                 onChange={onChange}
               />
             </Group>
-            <Group>
+            <Group className="lazy-load lazy-load-2">
               <h2>Be the first to know:</h2>
               <Checkbox
                 label={`Yes, I would like Nutricia to contact me to update me on 
@@ -145,7 +145,7 @@ export default function Form() {
                 labelSize="sm"
               />
             </Group>
-            <Group>
+            <Group className="lazy-load lazy-load-2">
               <Button onClick={handleSubmit}>
                 <span>Submit</span>
               </Button>
@@ -155,13 +155,13 @@ export default function Form() {
           </Section>
         </Content>
         <Footer>
-          <Section>
+          <Section className="lazy-load lazy-load-3">
             <p>*Required fields</p>
             <p>
               This information is intended for healthcare professionals only.
             </p>
           </Section>
-          <Section>
+          <Section className="lazy-load lazy-load-3">
             <h3>Data Protection:</h3>
             <p>
               Data Protection: Nutricia Ltd. acting as data controller collects

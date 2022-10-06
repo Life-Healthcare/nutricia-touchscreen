@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const FormWrapper = styled.main`
   height: 100vh;
@@ -9,6 +9,7 @@ export const FormWrapper = styled.main`
   justify-content: center;
   padding: 3em;
   margin: auto;
+  overflow: hidden;
 
   h1 {
     font-size: 3.5em;
@@ -24,6 +25,33 @@ export const FormWrapper = styled.main`
     font-size: 1.5em;
     font-weight: bold;
     margin-bottom: 1em;
+  }
+
+  .lazy-load {
+    --duration: 1.5s;
+    --translate-y: 25%;
+    @keyframes lazy-load {
+      0% {
+        opacity: 0;
+        transform: translateY(var(--translate-y));
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+    }
+    
+    opacity: 0;
+    transform: translateY(var(--translate-y));
+    animation: lazy-load var(--duration) ease forwards;
+    ${Array.from({ length: 10 }).map((_, i) => {
+      return css`
+        &-${i} {
+          animation-delay: calc((var(--duration) * 0.4) * ${i});
+        }
+      `;
+    })}
   }
 `;
 
@@ -42,7 +70,7 @@ export const Content = styled.section`
 `;
 
 export const Group = styled.div`
-  margin-bottom: 2em;
+  margin-bottom: 1.5em;
 `;
 
 export const Section = styled.div``;
