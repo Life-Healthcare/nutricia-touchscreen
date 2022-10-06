@@ -1,6 +1,9 @@
 import React, { ChangeEventHandler } from "react";
 import {
+  Button,
   Content,
+  Exit,
+  Footer,
   FormWrapper,
   Group,
   Header,
@@ -134,10 +137,34 @@ export default function Form() {
             />
           </Group>
           <Group>
-
+            <Button>
+              <span>Submit</span>
+            </Button>
+            <Exit>Reset Form</Exit>
+            <Exit>Exit</Exit>
           </Group>
         </Section>
       </Content>
+      <Footer>
+        <Section>
+          <p>*Required fields</p>
+          <p>This information is intended for healthcare professionals only.</p>
+        </Section>
+        <Section>
+          <h3>Data Protection:</h3>
+          <p>
+            Data Protection: Nutricia Ltd. acting as data controller collects
+            and manages your personal information. Please see Nutricia’s Privacy
+            Notice for Healthcare Professionals available at
+            www.nutricia.co.uk/hcp/privacy-policy for more information. You can
+            withdraw your consent at any time. Any personal data provided by you
+            to Nutricia will be held in accordance with our Privacy Notice, UK
+            GDPR and the Data Protection Act 2018. Nutricia Ltd, Newmarket
+            Avenue, Whitehorse Business Park, Trowbridge, Wiltshire BA14 0XQ,
+            England.
+          </p>
+        </Section>
+      </Footer>
     </FormWrapper>
   );
 }

@@ -42,9 +42,48 @@ export const Content = styled.section`
 `;
 
 export const Group = styled.div`
-
-`
+  margin-bottom: 2em;
+`;
 
 export const Section = styled.div``;
 
-export const Footer = styled.footer``;
+export const Footer = styled.footer`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: end;
+  gap: 2em;
+
+  h3 {
+    font-weight: bold;
+  }
+
+  ${Group} {
+    margin-bottom: 0;
+  }
+`;
+
+export const Button = styled.button`
+  display: inline-block;
+  border: none;
+  width: 100%;
+  max-width: 800px;
+  padding: 1.5em;
+  color: #ffffff;
+  background-color: #51338c;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 1.5em;
+`;
+
+export const Exit = styled.button`
+  display: block;
+  border: none;
+  background-color: transparent;
+  color: #51338c;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 1.5em;
+`;

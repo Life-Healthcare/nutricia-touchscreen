@@ -27,7 +27,9 @@ export function TextInput({
   const id = useId();
   return (
     <TextGroup>
-      <label>{label}</label>
+      <label htmlFor={id}>
+        <h2>{label}</h2>
+      </label>
       <input
         id={id}
         name={name}
