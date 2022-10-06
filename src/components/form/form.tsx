@@ -98,6 +98,18 @@ export default function Form({ onExit }: Props) {
   }
 
   React.useEffect(() => {
+    if (!showModal) return;
+    const timeout = setTimeout(() => {
+      setShowModal(false);
+      handleExit();
+    }, 3000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [showModal]);
+
+  React.useEffect(() => {
     session.start();
   }, [session]);
 
