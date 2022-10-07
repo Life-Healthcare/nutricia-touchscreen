@@ -16,6 +16,7 @@ import schema from "@/components/form/model/form";
 import { User } from "@/types";
 import useSession from "@/hooks/use-session";
 import config from "@/config";
+import { date } from "joi";
 
 const DEFAULT_USER = {
   nutrison: {
@@ -113,6 +114,25 @@ export default function Form({ onExit }: Props) {
   React.useEffect(() => {
     session.start();
   }, [session]);
+
+  React.useEffect(() => {
+    let time: NodeJS.Timeout;
+
+    function resetTimer() {
+      clearTimeout(time);
+      time = setTimeout(handleExit, 30000);
+    }
+
+    resetTimer();
+
+    window.addEventListener("mousemove", resetTimer);
+    window.addEventListener("keydown", resetTimer);
+    return () => {
+      window.removeEventListener("mousemove", resetTimer);
+      window.removeEventListener("keydown", resetTimer);
+      clearTimeout(time);
+    };
+  }, []);
 
   return (
     <>
@@ -243,9 +263,9 @@ export default function Form({ onExit }: Props) {
           <Section className="lazy-load lazy-load-3">
             <h3>Data Protection:</h3>
             <p>
-              Nutricia Ltd. acting as data controller collects
-              and manages your personal information. Please see Nutricia’s
-              Privacy Notice for Healthcare Professionals available at
+              Nutricia Ltd. acting as data controller collects and manages your
+              personal information. Please see Nutricia’s Privacy Notice for
+              Healthcare Professionals available at
               www.nutricia.co.uk/hcp/privacy-policy for more information. You
               can withdraw your consent at any time. Any personal data provided
               by you to Nutricia will be held in accordance with our Privacy
