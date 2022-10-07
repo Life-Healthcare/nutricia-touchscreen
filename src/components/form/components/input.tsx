@@ -15,6 +15,7 @@ type Props = {
 type TextProps = Props & {
   value: string;
   placeholder: string;
+  error?: string;
   showError: boolean;
 };
 
@@ -25,6 +26,7 @@ export function TextInput({
   onChange,
   placeholder,
   showError,
+  error,
 }: TextProps) {
   const id = useId();
   return (
@@ -39,7 +41,9 @@ export function TextInput({
         onChange={onChange}
         placeholder={placeholder}
       />
-      <Error show={showError}>*This field must be completed</Error>
+      <Error show={showError}>
+        {error ? error : "*This field must be completed"}
+      </Error>
     </TextGroup>
   );
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Bold,
   Button,
   Content,
   Exit,
@@ -196,6 +197,7 @@ export default function Form({ onExit }: Props) {
                 value={user.emailAddress}
                 onChange={onChange}
                 showError={errors?.["emailAddress"]}
+                error="*Please enter a valid email address"
               />
               <TextInput
                 name="placeOfWork"
@@ -234,14 +236,14 @@ export default function Form({ onExit }: Props) {
         <Footer>
           <Section className="lazy-load lazy-load-3">
             <p>*Required fields</p>
-            <p>
+            <Bold>
               This information is intended for healthcare professionals only.
-            </p>
+            </Bold>
           </Section>
           <Section className="lazy-load lazy-load-3">
             <h3>Data Protection:</h3>
             <p>
-              Data Protection: Nutricia Ltd. acting as data controller collects
+              Nutricia Ltd. acting as data controller collects
               and manages your personal information. Please see Nutricia’s
               Privacy Notice for Healthcare Professionals available at
               www.nutricia.co.uk/hcp/privacy-policy for more information. You
