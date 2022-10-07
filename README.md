@@ -1,5 +1,5 @@
 # Nutricia Touchscreen
-
+1920x1200
 
 ### Getting Started
 
@@ -12,7 +12,6 @@ npm start
 ### Production Build
 
 ```shell
-cp .env.example .env
 npm install
 npm run build
 ```
