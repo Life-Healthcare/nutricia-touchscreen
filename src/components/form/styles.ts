@@ -100,6 +100,10 @@ export const Footer = styled.footer`
   }
 `;
 
+export const Bold = styled.p`
+  font-weight: bold;
+`;
+
 export const Button = styled.button`
   display: inline-block;
   border: none;
