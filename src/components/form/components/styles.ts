@@ -80,7 +80,6 @@ export const CheckBoxGroup = styled.div<{
 export const ErrorString = styled.p<{ show: boolean }>`
   color: #d00000;
   font-size: 1.15em;
-  font-family: "Avenir", serif;
   font-weight: 500;
   padding-top: 0.4em;
 
