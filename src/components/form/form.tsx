@@ -118,6 +118,8 @@ export default function Form({ onExit }: Props) {
   React.useEffect(() => {
     let time: NodeJS.Timeout;
 
+    alert(`${window.innerWidth}  ${window.innerHeight}`)
+    
     function resetTimer() {
       clearTimeout(time);
       time = setTimeout(handleExit, 30000);
