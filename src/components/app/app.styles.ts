@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import { fluidRange } from "polished";
 import vars from "@/components/app/vars";
+import styled from "styled-components";
 
 export const AppReset = createGlobalStyle`
   @font-face {
@@ -84,3 +85,13 @@ export const AppReset = createGlobalStyle`
     -webkit-overflow-scrolling: touch;
   }
 `;
+
+export const FullScreenButton = styled.button`
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: none;
+  width: 50px;
+  aspect-ratio: 1;
+  border: none;
+`

@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { CheckBoxGroup, ErrorString, TextGroup, Tick } from "./components/styles";
 
 export const FormWrapper = styled.main`
   height: 100vh;
@@ -11,6 +12,10 @@ export const FormWrapper = styled.main`
   margin: auto;
   overflow: hidden;
 
+  ${ErrorString} {
+    font-size: .8em;
+  }
+
   h1,
   h2,
   p {
@@ -18,7 +23,7 @@ export const FormWrapper = styled.main`
   }
 
   h1 {
-    font-size: 3.5em;
+    font-size: 1.7em;
     color: var(--color-primary);
 
     span {
@@ -27,7 +32,7 @@ export const FormWrapper = styled.main`
   }
 
   h2 {
-    font-size: 1.5em;
+    font-size: 0.8em;
     font-weight: bold;
     margin-bottom: 0.5em;
   }
@@ -65,6 +70,10 @@ export const Header = styled.header`
   gap: 1em;
   align-items: flex-start;
   margin-bottom: 1.5em;
+  margin-top: 2em;
+  img {
+    width: 7em;
+  }
 `;
 
 export const Content = styled.section`
@@ -75,10 +84,36 @@ export const Content = styled.section`
 `;
 
 export const Group = styled.div`
-  margin-bottom: 1.5em;
+  ${TextGroup} {
+    margin-bottom: 0;
+    input {
+      height: 2.4em;
+      width: 60%;
+      border-radius: 0.2em;
+    }
+    input::placeholder {
+      color: gray;
+    }
+  }
+  ${CheckBoxGroup} {
+    label {
+      gap: 0;
+      ${Tick} {
+        height: 1.4em;
+        width: 1.4em;
+        margin-left: 0%;
+        border-radius: 0.2em;
+      }
+      span {
+        font-size: 0.8em;
+        margin-left: 0;
+      }
+    }
+  }
 `;
 
-export const Section = styled.div``;
+export const Section = styled.div`
+`;
 
 export const Footer = styled.footer`
   width: 100%;
@@ -86,6 +121,7 @@ export const Footer = styled.footer`
   grid-template-columns: repeat(2, 1fr);
   align-items: end;
   gap: 2em;
+  font-size: 0.6em;
 
   h3 {
     font-weight: bold;
@@ -98,6 +134,10 @@ export const Footer = styled.footer`
   p {
     max-width: 820px;
   }
+
+  & > div:last-child {
+    margin-left: 1em;
+  }
 `;
 
 export const Bold = styled.p`
@@ -105,10 +145,12 @@ export const Bold = styled.p`
 `;
 
 export const Button = styled.button`
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
   width: 100%;
-  max-width: 800px;
+  height: 1.5em;
   padding: 1.5em;
   color: #ffffff;
   background-color: #51338c;
@@ -126,5 +168,6 @@ export const Exit = styled.button`
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
+  font-size: .8em;
 `;

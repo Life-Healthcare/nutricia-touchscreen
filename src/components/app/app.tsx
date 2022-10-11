@@ -1,5 +1,5 @@
 import React from "react";
-import { AppReset } from "@/components/app/app.styles";
+import { AppReset, FullScreenButton } from "@/components/app/app.styles";
 import Home from "@/pages/home/home";
 
 export default function App() {
@@ -7,6 +7,13 @@ export default function App() {
     <React.Suspense fallback="Loading...">
       <AppReset />
       <Home />
+      <FullScreenButton
+      onClick={() => {
+        document.querySelector("body").requestFullscreen()
+      }}
+      >
+
+      </FullScreenButton>
     </React.Suspense>
   );
 }
