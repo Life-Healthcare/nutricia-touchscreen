@@ -104,6 +104,7 @@ export default function useSession(analyticsEndpoint: string) {
             body: JSON.stringify({
               deviceId: DEVICE_ID,
               projectId: "nutrison-touchscreen",
+              sessions: sessionsToSync,
             }),
           });
           sentToServer = res.ok;
