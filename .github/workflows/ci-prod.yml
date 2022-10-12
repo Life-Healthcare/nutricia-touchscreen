@@ -1,0 +1,30 @@
+name: CI Prod
+
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: |
+            cd /var/www/sites/nutricia-touchscreen
+            git reset --hard
+            git pull
+            git lfs pull
+            npm install
+            npm run build
+          host: ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.PROD_USERNAME }}
+          privateKey: ${{ secrets.PROD_PRIVATE_KEY }}
+
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_DEPLOYMENTS }}
