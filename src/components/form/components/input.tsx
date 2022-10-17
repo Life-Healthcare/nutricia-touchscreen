@@ -51,6 +51,7 @@ export function TextInput({
 type CheckBoxProps = Props & {
   checked: boolean;
   labelSize?: "sm" | "lg";
+  border?: boolean;
 };
 
 export function Checkbox({
@@ -59,13 +60,14 @@ export function Checkbox({
   name,
   checked,
   onChange,
+  border = false,
 }: CheckBoxProps) {
   const id = useId();
 
   return (
     <CheckBoxGroup labelSize={labelSize}>
       <label htmlFor={id}>
-        <Tick checked={checked}>
+        <Tick checked={checked} border={border}>
           <input
             type="checkbox"
             name={name}

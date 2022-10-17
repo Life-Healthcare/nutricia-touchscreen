@@ -19,7 +19,7 @@ export const TextGroup = styled.div`
   }
 `;
 
-export const Tick = styled.div<{ checked: boolean }>`
+export const Tick = styled.div<{ checked: boolean; border?: boolean }>`
   height: 2rem;
   width: 2rem;
   position: relative;
@@ -36,6 +36,14 @@ export const Tick = styled.div<{ checked: boolean }>`
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+  ${({ border }) => {
+    if (border) {
+      return css`
+        border: 2px solid #51338c;
+      `;
+    }
+  }}
 
   ${({ checked }) => {
     if (checked) {

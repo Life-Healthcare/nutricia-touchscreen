@@ -244,6 +244,7 @@ export default function Form({ onExit }: Props) {
                 name={"agreement"}
                 onChange={onChange}
                 labelSize="sm"
+                border={true}
               />
             </Group>
             <Group className="lazy-load lazy-load-2">
