@@ -4,7 +4,7 @@ import vars from "@/components/app/vars";
 import styled from "styled-components";
 
 export const AppReset = createGlobalStyle`
-  @font-face {
+  /* @font-face {
     font-family: "Bariol";
     src: url("./assets/fonts/Bariol_Bold.otf") format("otf");
     font-weight: bold;
@@ -26,7 +26,8 @@ export const AppReset = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-  }
+  } */
+  @import url("./fonts.css");
   
   
   :root {
@@ -74,6 +75,7 @@ export const AppReset = createGlobalStyle`
     font-size: clamp(var(--root-min), var(--root-size), var(--root-max));
     font-family: "Bariol", sans-serif;
     font-weight: normal;
+    font-style: normal;
     line-height: 1em;
     text-rendering: geometricPrecision;
     background-color: #51338C;
