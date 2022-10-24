@@ -120,7 +120,7 @@ export const Footer = styled.footer`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: end;
-  gap: 2em;
+  gap: 2rem;
   font-size: 0.6em;
 
   h3 {
@@ -136,7 +136,7 @@ export const Footer = styled.footer`
   }
 
   & > div:last-child {
-    margin-left: 1em;
+    margin-left: 0em;
   }
 `;
 
